@@ -52,13 +52,13 @@
           <p class="text-xl text-neutral-700">8 Jobs</p>
         </div>
         <div class="my-5">
-          <button class="btn bg-info text-white">All</button>
-          <button class="btn">Interview</button>
-          <button class="btn">Rejected</button>
+          <button id="allJobsButton" class="btn bg-info text-white">All</button>
+          <button id="allInterviewButton" class="btn">Interview</button>
+          <button id="allRejectedButton" class="btn">Rejected</button>
         </div>
       </section>
-      <!-- job section  -->
-      <section>
+      <!-- ............job section...........  -->
+      <section id="allJobsSection">
         <!-- card -1  -->
         <div class="bg-base-100 rounded-xl p-6 border border-base-300 my-3">
           <div class="flex justify-between items-start">
@@ -489,9 +489,74 @@
           </div>
         </div>
       </section>
+      <!-- Interview section  -->
+      <section id="allInterviewSection" class="hidden">
+        <div
+          class="mx-auto bg-base-100 border border-base-300 rounded-xl min-h-[400px] flex items-center justify-center"
+        >
+          <div class="text-center px-6">
+            <div class="flex justify-center mb-6">
+              <div
+                class="w-20 h-20 bg-blue-100 rounded-2xl flex items-center justify-center"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="w-10 h-10 text-blue-600"
+                  fill="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"
+                  />
+                  <polyline points="14 2 14 8 20 8" fill="white" />
+                </svg>
+              </div>
+            </div>
+            <h2 class="text-2xl font-semibold text-gray-800">
+              No jobs available
+            </h2>
+            <p>Interview</p>
+            <p class="text-gray-500 mt-2">
+              Check back soon for new job opportunities
+            </p>
+          </div>
+        </div>
+      </section>
+      <!-- rejected section  -->
+      <section id="allRejectedSection" class="hidden">
+        <div
+          class="mx-auto bg-base-100 border border-base-300 rounded-xl min-h-[400px] flex items-center justify-center"
+        >
+          <div class="text-center px-6">
+            <div class="flex justify-center mb-6">
+              <div
+                class="w-20 h-20 bg-blue-100 rounded-2xl flex items-center justify-center"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="w-10 h-10 text-blue-600"
+                  fill="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"
+                  />
+                  <polyline points="14 2 14 8 20 8" fill="white" />
+                </svg>
+              </div>
+            </div>
+            <h2 class="text-2xl font-semibold text-gray-800">
+              No jobs available
+            </h2>
+            <p>Rejected</p>
+            <p class="text-gray-500 mt-2">
+              Check back soon for new job opportunities
+            </p>
+          </div>
+        </div>
+      </section>
     </main>
     <!-- script  -->
     <script src="./main.js"></script>
-    <script src="tailwind.config.js"></script>
   </body>
 </html>
