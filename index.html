@@ -40,7 +40,7 @@
           </div>
           <div class="border border-base-300 rounded-xl p-5 w-full bg-base-100">
             <p class="text-lg">Rejected</p>
-            <p class="text-2xl text-error font-bold">0</p>
+            <p id="rejectedCount" class="text-2xl text-error font-bold">0</p>
           </div>
         </div>
       </nav>
@@ -106,7 +106,7 @@
               INTERVIEW
             </button>
             <button
-              class="px-4 py-2 text-sm font-medium text-red-600 border border-red-500 rounded-md hover:bg-red-50 transition"
+              class="rejectedButton px-4 py-2 text-sm font-medium text-red-600 border border-red-500 rounded-md hover:bg-red-50 transition"
             >
               REJECTED
             </button>
@@ -159,7 +159,7 @@
               INTERVIEW
             </button>
             <button
-              class="px-4 py-2 text-sm font-medium text-red-600 border border-red-500 rounded-md hover:bg-red-50"
+              class="rejectedButton px-4 py-2 text-sm font-medium text-red-600 border border-red-500 rounded-md hover:bg-red-50"
             >
               REJECTED
             </button>
@@ -213,7 +213,7 @@
               INTERVIEW
             </button>
             <button
-              class="px-4 py-2 text-sm font-medium text-red-600 border border-red-500 rounded-md hover:bg-red-50"
+              class="rejectedButton px-4 py-2 text-sm font-medium text-red-600 border border-red-500 rounded-md hover:bg-red-50"
             >
               REJECTED
             </button>
@@ -267,7 +267,7 @@
               INTERVIEW
             </button>
             <button
-              class="px-4 py-2 text-sm font-medium text-red-600 border border-red-500 rounded-md hover:bg-red-50"
+              class="rejectedButton px-4 py-2 text-sm font-medium text-red-600 border border-red-500 rounded-md hover:bg-red-50"
             >
               REJECTED
             </button>
@@ -319,7 +319,7 @@
               INTERVIEW
             </button>
             <button
-              class="px-4 py-2 text-sm font-medium text-red-600 border border-red-500 rounded-md hover:bg-red-50"
+              class="rejectedButton px-4 py-2 text-sm font-medium text-red-600 border border-red-500 rounded-md hover:bg-red-50"
             >
               REJECTED
             </button>
@@ -374,7 +374,7 @@
               INTERVIEW
             </button>
             <button
-              class="px-4 py-2 text-sm font-medium text-red-600 border border-red-500 rounded-md hover:bg-red-50"
+              class="rejectedButton px-4 py-2 text-sm font-medium text-red-600 border border-red-500 rounded-md hover:bg-red-50"
             >
               REJECTED
             </button>
@@ -427,7 +427,7 @@
               INTERVIEW
             </button>
             <button
-              class="px-4 py-2 text-sm font-medium text-red-600 border border-red-500 rounded-md hover:bg-red-50"
+              class="rejectedButton px-4 py-2 text-sm font-medium text-red-600 border border-red-500 rounded-md hover:bg-red-50"
             >
               REJECTED
             </button>
@@ -482,7 +482,7 @@
               INTERVIEW
             </button>
             <button
-              class="px-4 py-2 text-sm font-medium text-red-600 border border-red-500 rounded-md hover:bg-red-50"
+              class="rejectedButton px-4 py-2 text-sm font-medium text-red-600 border border-red-500 rounded-md hover:bg-red-50"
             >
               REJECTED
             </button>
@@ -529,7 +529,10 @@
       </section>
       <!-- rejected section  -->
       <section id="allRejectedSection" class="hidden min-h-screen">
-        <div
+        <div class="text-end py-2">
+          <p class=""><Span id="rejectedNumber" class="font-bold">0</Span> of 8 jobs</p>
+        </div>
+        <div id="noRejectedCard"
           class="mx-auto bg-base-100 border border-base-300 rounded-xl min-h-[400px] flex items-center justify-center"
         >
           <div class="text-center px-6">
@@ -559,6 +562,7 @@
             </p>
           </div>
         </div>
+        <div id="allRejectedCard"></div>
       </section>
     </main>
     <!-- script  -->

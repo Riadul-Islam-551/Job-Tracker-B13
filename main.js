@@ -65,7 +65,7 @@ for (const job of jobs) {
     const status = job.querySelector("span");
     status.innerText = "Interview";
 
-    status.classList.remove("text-blue-700", "bg-blue-100");
+    status.classList.remove("text-blue-700", "bg-blue-100", "bg-error");
     status.classList.add("text-white", "bg-accent");
     console.log(status);
 
@@ -77,10 +77,46 @@ for (const job of jobs) {
     interviewContent.appendChild(clonedJob);
 
     const interviewCards = interviewContent.getElementsByClassName("job-card");
-    const numbersOfInterview =
-      document.getElementById("interviewNumber");
+    const numbersOfInterview = document.getElementById("interviewNumber");
     numbersOfInterview.innerText = interviewCards.length;
     console.log(interviewCards.length);
     console.log(numbersOfInterview);
+  });
+}
+
+// reject button integration
+for (const job of jobs) {
+  const rejectedBtn = job.querySelector(".rejectedButton");
+  rejectedBtn.addEventListener("click", function () {
+    // console.log("interview button is clicked for :", job);
+    const rejectedNumber = document.getElementById("rejectedCount");
+    // console.log(interviewNumber.innerText);
+    let totalRejected = parseInt(rejectedNumber.innerText);
+    totalRejected += 1;
+
+    rejectedNumber.innerText = totalRejected;
+    rejectedBtn.disabled = true;
+    console.log("rejected number", rejectedNumber);
+
+    // status setting
+    const status = job.querySelector("span");
+    status.innerText = "Rejected";
+
+    status.classList.remove("text-blue-700", "bg-blue-100", "bg-accent");
+    status.classList.add("text-white", "bg-error");
+    console.log(status);
+
+    // rejected section added
+    const noRejectedContent = document.getElementById("noRejectedCard");
+    const rejectedContent = document.getElementById("allRejectedCard");
+    noRejectedContent.classList.add("hidden");
+    const clonedJob = job.cloneNode(true);
+    rejectedContent.appendChild(clonedJob);
+
+    const rejectedCards = rejectedContent.getElementsByClassName("job-card");
+    const numbersOfReject = document.getElementById("rejectedNumber");
+    numbersOfReject.innerText = rejectedCards.length;
+    console.log(rejectedCards.length);
+    console.log(numbersOfReject);
   });
 }
