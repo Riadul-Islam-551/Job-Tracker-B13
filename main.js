@@ -68,5 +68,13 @@ for (const job of jobs) {
     status.classList.remove("text-blue-700", "bg-blue-100");
     status.classList.add("text-white", "bg-accent");
     console.log(status);
+
+    // interview section added
+    const noInterview = document.getElementById("noInterviewCard");
+    const interviewCard = document.getElementById("allInterviewCard");
+    noInterview.classList.add("hidden");
+    const clonedJob = job.cloneNode(true);
+    interviewCard.appendChild(clonedJob);
+    // console.log(interviewCard);
   });
 }
