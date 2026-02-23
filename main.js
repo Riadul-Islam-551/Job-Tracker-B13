@@ -71,10 +71,16 @@ for (const job of jobs) {
 
     // interview section added
     const noInterview = document.getElementById("noInterviewCard");
-    const interviewCard = document.getElementById("allInterviewCard");
+    const interviewContent = document.getElementById("allInterviewCard");
     noInterview.classList.add("hidden");
     const clonedJob = job.cloneNode(true);
-    interviewCard.appendChild(clonedJob);
-    // console.log(interviewCard);
+    interviewContent.appendChild(clonedJob);
+
+    const interviewCards = interviewContent.getElementsByClassName("job-card");
+    const numbersOfInterview =
+      document.getElementById("interviewNumber");
+    numbersOfInterview.innerText = interviewCards.length;
+    console.log(interviewCards.length);
+    console.log(numbersOfInterview);
   });
 }
