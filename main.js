@@ -1,86 +1,123 @@
-// all button configuration
+// // -----------------------------
+// // Section Buttons
+// // -----------------------------
 const allButton = document.getElementById("allJobsButton");
 const interviewButton = document.getElementById("allInterviewButton");
 const rejectedButton = document.getElementById("allRejectedButton");
 
-// interview button
-interviewButton.addEventListener("click", function () {
-  const allJobs = document.getElementById("allJobsSection");
-  const allInterview = document.getElementById("allInterviewSection");
-  const allRejected = document.getElementById("allRejectedSection");
+const allJobsSection = document.getElementById("allJobsSection");
+const allInterviewSection = document.getElementById("allInterviewSection");
+const allRejectedSection = document.getElementById("allRejectedSection");
 
-  interviewButton.classList.add("bg-accent", "text-white");
-  allButton.classList.remove("bg-info", "text-white");
-  rejectedButton.classList.remove("bg-error", "text-white");
+const totalInterview = document.getElementById("interviewNumber");
+const totalRejected = document.getElementById("rejectedNumber");
 
-  allJobs.classList.add("hidden");
-  allRejected.classList.add("hidden");
-  allInterview.classList.remove("hidden");
-});
-// rejected button
-rejectedButton.addEventListener("click", function () {
-  const allJobs = document.getElementById("allJobsSection");
-  const allInterview = document.getElementById("allInterviewSection");
-  const allRejected = document.getElementById("allRejectedSection");
-
-  rejectedButton.classList.add("bg-error", "text-white");
-  interviewButton.classList.remove("bg-accent", "text-white");
-  allButton.classList.remove("bg-info", "text-white");
-
-  allJobs.classList.add("hidden");
-  allInterview.classList.add("hidden");
-  allRejected.classList.remove("hidden");
-});
-// all jobs button
-allButton.addEventListener("click", function () {
-  const allJobs = document.getElementById("allJobsSection");
-  const allInterview = document.getElementById("allInterviewSection");
-  const allRejected = document.getElementById("allRejectedSection");
-
+// Section toggles
+allButton.addEventListener("click", () => {
   allButton.classList.add("bg-info", "text-white");
-  rejectedButton.classList.remove("bg-error", "text-white");
   interviewButton.classList.remove("bg-accent", "text-white");
+  rejectedButton.classList.remove("bg-error", "text-white");
 
-  allInterview.classList.add("hidden");
-  allRejected.classList.add("hidden");
-  allJobs.classList.remove("hidden");
+  allJobsSection.classList.remove("hidden");
+  allInterviewSection.classList.add("hidden");
+  allRejectedSection.classList.add("hidden");
 });
 
-// interview button integration
+interviewButton.addEventListener("click", () => {
+  allButton.classList.remove("bg-info", "text-white");
+  interviewButton.classList.add("bg-accent", "text-white");
+  rejectedButton.classList.remove("bg-error", "text-white");
+
+  allJobsSection.classList.add("hidden");
+  allInterviewSection.classList.remove("hidden");
+  allRejectedSection.classList.add("hidden");
+});
+
+rejectedButton.addEventListener("click", () => {
+  allButton.classList.remove("bg-info", "text-white");
+  interviewButton.classList.remove("bg-accent", "text-white");
+  rejectedButton.classList.add("bg-error", "text-white");
+
+  allJobsSection.classList.add("hidden");
+  allInterviewSection.classList.add("hidden");
+  allRejectedSection.classList.remove("hidden");
+});
+
+// -----------------------------
+// Job Card Buttons
+// -----------------------------
+const interviewContent = document.getElementById("allInterviewCard");
+const rejectedContent = document.getElementById("allRejectedCard");
+const noInterviewCard = document.getElementById("noInterviewCard");
+const noRejectedCard = document.getElementById("noRejectedCard");
+
+const interviewCount = document.getElementById("interviewCount");
+const rejectedCount = document.getElementById("rejectedCount");
 const jobs = document.querySelectorAll(".job-card");
-for (const job of jobs) {
+
+jobs.forEach((job) => {
   const interviewBtn = job.querySelector(".interviewButton");
-  interviewBtn.addEventListener("click", function () {
-    // console.log("interview button is clicked for :", job);
-    const interviewNumber = document.getElementById("interviewCount");
-    // console.log(interviewNumber.innerText);
-    let totalInterview = parseInt(interviewNumber.innerText);
-    totalInterview += 1;
+  const rejectedBtn = job.querySelector(".rejectedButton");
+  const status = job.querySelector("span");
 
-    interviewNumber.innerText = totalInterview;
-    interviewBtn.disabled = true;
-    console.log(interviewNumber);
+  // -----------------------------
+  // Interview Button Click
+  // -----------------------------
+  interviewBtn.addEventListener("click", () => {
+    const currentStatus = status.innerText;
 
-    // status setting
-    const status = job.querySelector("span");
+    // Remove from rejected section if previously rejected
+    if (currentStatus === "Rejected") {
+      rejectedContent.removeChild(job);
+      rejectedCount.innerText = parseInt(rejectedCount.innerText) - 1;
+      if (rejectedContent.children.length === 0)
+        noRejectedCard.classList.remove("hidden");
+    }
+
+    // Move to interview section if not already
+    if (currentStatus !== "Interview") {
+      // const clonedJob = job.cloneNode(true);
+      interviewContent.appendChild(job);
+      console.log(interviewContent.children);
+      totalInterview.innerText = interviewContent.children.length;
+
+      interviewCount.innerText = parseInt(interviewCount.innerText) + 1;
+      noInterviewCard.classList.add("hidden");
+    }
+    // Update status UI
     status.innerText = "Interview";
-
-    status.classList.remove("text-blue-700", "bg-blue-100");
+    status.classList.remove("text-blue-700", "bg-blue-100", "bg-error");
     status.classList.add("text-white", "bg-accent");
-    console.log(status);
-
-    // interview section added
-    const noInterview = document.getElementById("noInterviewCard");
-    const interviewContent = document.getElementById("allInterviewCard");
-    noInterview.classList.add("hidden");
-    const clonedJob = job.cloneNode(true);
-    interviewContent.appendChild(clonedJob);
-
-    const interviewCards = interviewContent.getElementsByClassName("job-card");
-    const numbersOfInterview =
-      document.getElementById("interviewNumber");
-    numbersOfInterview.innerText = interviewCards.length;
-    console.log(interviewCards.length);
-    console.log(numbersOfInterview);
+    // totalInterview.innerText = interviewContent.children.length;
   });
-}
+
+  // -----------------------------
+  // Rejected Button Click
+  // -----------------------------
+  rejectedBtn.addEventListener("click", () => {
+    const currentStatus = status.innerText;
+
+    // Remove from interview section if previously interview
+    if (currentStatus === "Interview") {
+      interviewContent.removeChild(job);
+      interviewCount.innerText = parseInt(interviewCount.innerText) - 1;
+      if (interviewContent.children.length === 0)
+        noInterviewCard.classList.remove("hidden");
+    }
+
+    // Move to rejected section if not already
+    if (currentStatus !== "Rejected") {
+      // const clonedJob = job.cloneNode(true);
+      // interviewContent.appendChild(clonedJob);
+      rejectedContent.appendChild(job);
+      totalRejected.innerText = rejectedContent.children.length;
+      rejectedCount.innerText = parseInt(rejectedCount.innerText) + 1;
+      noRejectedCard.classList.add("hidden");
+    }
+
+    // Update status UI
+    status.innerText = "Rejected";
+    status.classList.remove("text-blue-700", "bg-blue-100", "bg-accent");
+    status.classList.add("text-white", "bg-error");
+  });
+});
