@@ -53,7 +53,6 @@ function updateCounts() {
   totalInterview.innerText = interviewContent.children.length;
   totalRejected.innerText = rejectedContent.children.length;
 
-  // Show empty message if needed
   if (interviewContent.children.length === 0) {
     noInterviewCard.classList.remove("hidden");
   } else {
@@ -67,7 +66,7 @@ function updateCounts() {
   }
 }
 
-// job card ligic
+// job card logic
 
 jobs.forEach((job) => {
   const interviewBtn = job.querySelector(".interviewButton");
