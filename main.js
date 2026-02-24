@@ -126,7 +126,7 @@ const jobs = [
     role: "React Native Developer",
     location: "Remote • Full-time • $130,000 – $175,000",
     description:
-      "Build cross-platform mobile applications using React Native.",
+      "Build cross-platform mobile applications using React Native. Work on products used by millions of users worldwide.",
     status: "not_applied",
   },
   {
@@ -135,7 +135,61 @@ const jobs = [
     role: "Frontend Developer",
     location: "Remote • Full-time • $95,000 – $120,000",
     description:
-      "Build responsive web apps using React and Tailwind CSS.",
+      "Build responsive web apps using modern frameworks like React and Tailwind CSS.",
+    status: "not_applied",
+  },
+  {
+    id: 3,
+    company: "DataViz Solutions",
+    role: "Backend Developer",
+    location: "Hybrid • Full-time • $110,000 – $140,000",
+    description:
+      "Work with Node.js and databases to develop secure backend services.",
+    status: "not_applied",
+  },
+  {
+    id: 4,
+    company: "CloudStack Inc.",
+    role: "Cloud Engineer",
+    location: "Onsite • Full-time • $120,000 – $150,000",
+    description:
+      "Manage cloud infrastructure and automate deployment pipelines.",
+    status: "not_applied",
+  },
+  {
+    id: 5,
+    company: "Innovate Labs",
+    role: "UX Designer",
+    location: "Remote • Part-time • $70,000 – $90,000",
+    description:
+      "Design intuitive and engaging user experiences for web platforms.",
+    status: "not_applied",
+  },
+  {
+    id: 6,
+    company: "MegaCorp Solutions",
+    role: "JavaScript Developer",
+    location: "New York, NY • Full-time • $130,000 - $170,000",
+    description:
+      "Build enterprise applications with JavaScript and modern frameworks.",
+    status: "not_applied",
+  },
+  {
+    id: 7,
+    company: "StartupXYZ",
+    role: "Full Stack Engineer",
+    location: "Remote • Full-time • $120,000 - $160,000",
+    description:
+      "Build enterprise applications with JavaScript and modern frameworks.",
+    status: "not_applied",
+  },
+  {
+    id: 8,
+    company: "TechCorp Industries",
+    role: "Senior Frontend Developer",
+    location: "San Francisco, CA • Full-time • $130,000 - $175,000",
+    description:
+      "We are looking for an experienced Frontend Developer to build scalable web applications using React and TypeScript.",
     status: "not_applied",
   },
 ];
@@ -185,49 +239,12 @@ rejectedButton.addEventListener("click", () => {
 });
 
 // =============================
-// RENDER FUNCTION
-// =============================
-
-function renderJobs() {
-  allJobsSection.innerHTML = "";
-  interviewContainer.innerHTML = "";
-  rejectedContainer.innerHTML = "";
-
-  let interviewTotal = 0;
-  let rejectedTotal = 0;
-
-  jobs.forEach((job) => {
-    const card = createJobCard(job);
-
-    // Always show in All Jobs
-    allJobsSection.appendChild(card);
-
-    if (job.status === "interview") {
-      interviewContainer.appendChild(createJobCard(job));
-      interviewTotal++;
-    }
-
-    if (job.status === "rejected") {
-      rejectedContainer.appendChild(createJobCard(job));
-      rejectedTotal++;
-    }
-  });
-
-  interviewCount.innerText = interviewTotal;
-  rejectedCount.innerText = rejectedTotal;
-
-  noInterviewCard.classList.toggle("hidden", interviewTotal > 0);
-  noRejectedCard.classList.toggle("hidden", rejectedTotal > 0);
-}
-
-// =============================
 // CREATE CARD
 // =============================
 
 function createJobCard(job) {
   const div = document.createElement("div");
-  div.className =
-    "bg-base-100 rounded-xl p-6 border border-base-300 my-3";
+  div.className = "bg-base-100 rounded-xl p-6 border border-base-300 my-3";
 
   let statusText = "NOT APPLIED";
   let statusClass = "text-blue-700 bg-blue-100";
@@ -271,6 +288,42 @@ function createJobCard(job) {
   });
 
   return div;
+}
+
+// =============================
+// RENDER FUNCTION
+// =============================
+
+function renderJobs() {
+  allJobsSection.innerHTML = "";
+  interviewContainer.innerHTML = "";
+  rejectedContainer.innerHTML = "";
+
+  let interviewTotal = 0;
+  let rejectedTotal = 0;
+
+  jobs.forEach((job) => {
+    const card = createJobCard(job);
+
+    // Always show in All Jobs
+    allJobsSection.appendChild(card);
+
+    if (job.status === "interview") {
+      interviewContainer.appendChild(createJobCard(job));
+      interviewTotal++;
+    }
+
+    if (job.status === "rejected") {
+      rejectedContainer.appendChild(createJobCard(job));
+      rejectedTotal++;
+    }
+  });
+
+  interviewCount.innerText = interviewTotal;
+  rejectedCount.innerText = rejectedTotal;
+
+  noInterviewCard.classList.toggle("hidden", interviewTotal > 0);
+  noRejectedCard.classList.toggle("hidden", rejectedTotal > 0);
 }
 
 // =============================
